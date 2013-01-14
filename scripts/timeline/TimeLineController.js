@@ -60,6 +60,11 @@ define(["thirdparty/jquery", "historicpoint/HistoricPointFactory", "timeline/Tim
 		$(window).resize( this.onResize.bind(this) );
 	}
 	
+	TimeLineController.prototype.getViewElement = function(){
+		
+		return this.m_nViewController; 
+	}
+	
 	
 	TimeLineController.prototype.renderTimeLines = function( ) {
 		
