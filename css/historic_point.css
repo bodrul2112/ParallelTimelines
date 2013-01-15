@@ -63,30 +63,33 @@
 .navigationArrowHandle {
 	
 	position: absolute;
-	
+	height: 20px;
+	width: 20px;
+	z-index: 3;
+	overflow: hidden;
 }
 
 .arrow-left {
 	width: 0; 
 	height: 0; 
-	border-top: 40px solid transparent;
-	border-bottom: 40px solid transparent; 
-	border-right:40px solid #CCC; 
+	border-top: 20px solid transparent;
+	border-bottom: 20px solid transparent; 
+	border-right:20px solid #CCC; 
 }
 
 .arrow-left:hover {
-	border-right:40px solid #999; 
+	border-right:20px solid #999; 
 }
 
 .arrow-right {
 	width: 0; 
 	height: 0; 
-	border-top: 40px solid transparent;
-	border-bottom: 40px solid transparent;
-	border-left: 40px solid #CCC;
+	border-top: 20px solid transparent;
+	border-bottom: 20px solid transparent;
+	border-left: 20px solid #CCC;
 }
 
-.arrow-left:hover {
-	border-left: 40px solid #999;
+.arrow-right:hover {
+	border-left: 20px solid #999;
 }
 

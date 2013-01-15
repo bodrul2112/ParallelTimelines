@@ -1,5 +1,5 @@
 
-define(["thirdparty/jquery", "historicpoint/HistoricPointFactory", "timeline/TimeLine", "timeline/Marker/MarkerController"], function( jQuery, HistoricPointFactory, TimeLine, MarkerController ){
+define(["thirdparty/jquery", "historicpoint/HistoricPointFactory", "timeline/TimeLine", "timeline/Marker/MarkerController", "navigation/MotionController"], function( jQuery, HistoricPointFactory, TimeLine, MarkerController, MotionController ){
 	
 	var TimeLineController = function(){
 
@@ -8,6 +8,7 @@ define(["thirdparty/jquery", "historicpoint/HistoricPointFactory", "timeline/Tim
 		this.m_eViewContainer;
 		this.m_pViewableTimeLines = [];
 		window.timeline = this;
+		this.m_oMotionController = new MotionController(this);
 	}
 	
 	TimeLineController.prototype.addRandomHistoricPoints = function( oTimeLine ){
@@ -62,7 +63,15 @@ define(["thirdparty/jquery", "historicpoint/HistoricPointFactory", "timeline/Tim
 	
 	TimeLineController.prototype.getViewElement = function(){
 		
-		return this.m_nViewController; 
+		return this.m_eViewContainer; 
+	}
+	
+	TimeLineController.prototype.getMainTimeLine = function(){
+		for(var i=0; i<this.m_pViewableTimeLines.length; i++){
+			if(this.m_pViewableTimeLines[i].isMain()){
+				return this.m_pViewableTimeLines[i];
+			}
+		}
 	}
 	
 	
@@ -87,6 +96,8 @@ define(["thirdparty/jquery", "historicpoint/HistoricPointFactory", "timeline/Tim
 			this.m_oMarkerController.setMainTimeLine( oMainTimeLine );
 			this.m_oMarkerController.renderMarkers();
 		}
+		debugger;
+		this.m_oMotionController.render();
 		
 	}
 	
@@ -102,6 +113,10 @@ define(["thirdparty/jquery", "historicpoint/HistoricPointFactory", "timeline/Tim
 		}
 		
 		this.renderTimeLines();
+	}
+	
+	TimeLineController.prototype.bindMotionController = function(){
+		this.m
 	}
 	
 	return TimeLineController;
