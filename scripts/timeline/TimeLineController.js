@@ -6,6 +6,7 @@ define(["thirdparty/jquery", "historicpoint/HistoricPointFactory", "timeline/Tim
 		this.m_oHistoricPointFactory = new HistoricPointFactory();
 		this.m_oMarkerController;
 		this.m_eViewContainer;
+		this.m_eViewContainerWrapper;
 		this.m_pViewableTimeLines = [];
 		window.timeline = this;
 		this.m_oMotionController = new MotionController(this);
@@ -53,9 +54,11 @@ define(["thirdparty/jquery", "historicpoint/HistoricPointFactory", "timeline/Tim
 		}
 	}
 	
-	TimeLineController.prototype.setViewElement = function( eViewContainer ){
+	//Yes i know, this is bad code. I'll change it later. (or never)
+	TimeLineController.prototype.setViewElement = function( eViewContainer, eViewContainerWrapper ){
 		
 		this.m_eViewContainer = eViewContainer;
+		this.m_eViewContainerWrapper = eViewContainerWrapper;
 		this.m_oMarkerController = new MarkerController( eViewContainer );
 		this.m_eViewContainer.append( this.m_eElement );
 		$(window).resize( this.onResize.bind(this) );
@@ -64,6 +67,11 @@ define(["thirdparty/jquery", "historicpoint/HistoricPointFactory", "timeline/Tim
 	TimeLineController.prototype.getViewElement = function(){
 		
 		return this.m_eViewContainer; 
+	}
+	
+	TimeLineController.prototype.getViewElementWrapper = function(){
+		
+		return this.m_eViewContainerWrapper;
 	}
 	
 	TimeLineController.prototype.getMainTimeLine = function(){
@@ -77,7 +85,6 @@ define(["thirdparty/jquery", "historicpoint/HistoricPointFactory", "timeline/Tim
 	
 	TimeLineController.prototype.renderTimeLines = function( ) {
 		
-		//debugger;
 		var oMainTimeLine;
 		for(var i=0; i< this.m_pViewableTimeLines.length; i++){
 			
@@ -96,7 +103,7 @@ define(["thirdparty/jquery", "historicpoint/HistoricPointFactory", "timeline/Tim
 			this.m_oMarkerController.setMainTimeLine( oMainTimeLine );
 			this.m_oMarkerController.renderMarkers();
 		}
-		debugger;
+
 		this.m_oMotionController.render();
 		
 	}
@@ -115,9 +122,18 @@ define(["thirdparty/jquery", "historicpoint/HistoricPointFactory", "timeline/Tim
 		this.renderTimeLines();
 	}
 	
-	TimeLineController.prototype.bindMotionController = function(){
-		this.m
+	TimeLineController.prototype.incrementallyMoveBackward = function(){
+
+		nLeft = this.m_eViewContainer.position().left + 500;
+		this.m_eViewContainer.css("left", nLeft);
 	}
+	
+	TimeLineController.prototype.incrementallyMoveForward = function(){
+
+		nLeft = this.m_eViewContainer.position().left - 500;
+		this.m_eViewContainer.css("left", nLeft);
+	}
+	
 	
 	return TimeLineController;
 	
