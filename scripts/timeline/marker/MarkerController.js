@@ -31,6 +31,10 @@ define(["thirdparty/jQuery", "services/TemplateService", "timeline/marker/Marker
 		return this.m_pMarkers;
 	}
 	
+	MarkerController.prototype._markerWithinWindow = function() {
+		
+	}
+	
 	MarkerController.prototype._createMarkers = function() {
 		
 		var mTimeParams = this.m_oTimeIntervalFactory.calculateIntervals( this.m_oMainTimeLine.getStartDateMillis(),  this.m_oMainTimeLine.getEndDateMillis() );
@@ -50,7 +54,7 @@ define(["thirdparty/jQuery", "services/TemplateService", "timeline/marker/Marker
 			 this.m_pMarkers.push( oMarker );
 		}
 	}
-	
+
 	
 	// going to be switching the main timeline, trying to think ahead a wee bit
 	MarkerController.prototype.renderMarkers = function(){

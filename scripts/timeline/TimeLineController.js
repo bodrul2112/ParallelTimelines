@@ -8,8 +8,14 @@ define(["thirdparty/jquery", "historicpoint/HistoricPointFactory", "timeline/Tim
 		this.m_eViewContainer;
 		this.m_eViewContainerWrapper;
 		this.m_pViewableTimeLines = [];
+		this.m_oMainTimeLine;
 		window.timeline = this;
 		this.m_oMotionController = new MotionController(this);
+		
+		this.m_nIncrementPixels = 500;
+		
+		this.m_nViewPortStartTime = null;
+		this.m_nViewPortEndTime = null;
 	}
 	
 	TimeLineController.prototype.addRandomHistoricPoints = function( oTimeLine ){
@@ -38,7 +44,7 @@ define(["thirdparty/jquery", "historicpoint/HistoricPointFactory", "timeline/Tim
 	
 	TimeLineController.prototype.addUserTimeLinesToView = function( oUser ){
 		
-		// database timez
+		// database timez ;'p
 	}
 	
 	TimeLineController.prototype.addTimeLineToView = function( sTimeLineName ){
@@ -61,6 +67,7 @@ define(["thirdparty/jquery", "historicpoint/HistoricPointFactory", "timeline/Tim
 		this.m_eViewContainerWrapper = eViewContainerWrapper;
 		this.m_oMarkerController = new MarkerController( eViewContainer );
 		this.m_eViewContainer.append( this.m_eElement );
+		this.m_eViewContainer.css("left",-this.m_eViewContainerWrapper.width()/2)
 		$(window).resize( this.onResize.bind(this) );
 	}
 	
@@ -85,6 +92,8 @@ define(["thirdparty/jquery", "historicpoint/HistoricPointFactory", "timeline/Tim
 	
 	TimeLineController.prototype.renderTimeLines = function( ) {
 		
+		
+		
 		var oMainTimeLine;
 		for(var i=0; i< this.m_pViewableTimeLines.length; i++){
 			
@@ -102,8 +111,10 @@ define(["thirdparty/jquery", "historicpoint/HistoricPointFactory", "timeline/Tim
 			oTimeLine.render();
 			this.m_oMarkerController.setMainTimeLine( oMainTimeLine );
 			this.m_oMarkerController.renderMarkers();
+			this.m_oMainTimeLine = oMainTimeLine;
 		}
-
+		
+		this._configureViewPortTimes();
 		this.m_oMotionController.render();
 		
 	}
@@ -124,18 +135,48 @@ define(["thirdparty/jquery", "historicpoint/HistoricPointFactory", "timeline/Tim
 	
 	TimeLineController.prototype.incrementallyMoveBackward = function(){
 
-		nLeft = this.m_eViewContainer.position().left + 500;
+		nLeft = this.m_eViewContainer.position().left + this.m_nIncrementPixels;
 		this.m_eViewContainer.css("left", nLeft);
+		
+		this._configureViewPortTimes();
 	}
 	
 	TimeLineController.prototype.incrementallyMoveForward = function(){
 
-		nLeft = this.m_eViewContainer.position().left - 500;
+		nLeft = this.m_eViewContainer.position().left - this.m_nIncrementPixels;
 		this.m_eViewContainer.css("left", nLeft);
+		
+		this._configureViewPortTimes();
+//		var nExtendTimeLine = this.m_nIncrementPixels * this._getTimePerPixel();
+//		this.m_oMainTimeLine.setEndDateMillis( this.m_oMainTimeLine.getEndDateMillis() + nExtendTimeLine);
+//		this.renderTimeLines();
+		
+		//nLeft = this.m_eViewContainer.position().left + this.m_nIncrementPixels;
+		//this.m_eViewContainer.css("left", nLeft);
 	}
 	
+	TimeLineController.prototype._configureViewPortTimes = function(){
+
+		var nLeft = -this.m_eViewContainer.position().left;
+
+		var nTimePerPixel = this._getTimePerPixel();
+		var nTimeMovedStart = nLeft * nTimePerPixel;
+		var nTimeMovedEnd = (nLeft+this.m_eViewContainerWrapper.width()) * nTimePerPixel;
+		this.m_nViewPortStartTime = this.m_oMainTimeLine.getStartDateMillis()+nTimeMovedStart;
+		this.m_nViewPortEndTime = this.m_oMainTimeLine.getStartDateMillis()+nTimeMovedEnd;
+		
+		console.log("VP, start time is " + new Date(this.m_nViewPortStartTime) + ", end time is " + new Date(this.m_nViewPortEndTime));
+	}
+	
+	TimeLineController.prototype._getTimePerPixel = function(){
+		
+		var nStartDate = this.m_oMainTimeLine.getStartDateMillis();
+		var nEndDate = this.m_oMainTimeLine.getEndDateMillis();
+		var nTimeDifferance = nEndDate - nStartDate;
+		var nTimePerPixel = nTimeDifferance / this.m_eViewContainer.width();
+		return nTimePerPixel;
+	}
 	
 	return TimeLineController;
-	
 	
 });
