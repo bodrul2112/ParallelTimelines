@@ -69,6 +69,7 @@ define(["thirdparty/jquery", "historicpoint/HistoricPointFactory", "timeline/Tim
 		this.m_eViewContainer.append( this.m_eElement );
 		this.m_eViewContainer.css("left",-this.m_eViewContainerWrapper.width()/2)
 		$(window).resize( this.onResize.bind(this) );
+		this._configureViewPortTimes();
 	}
 	
 	TimeLineController.prototype.getViewElement = function(){
@@ -114,7 +115,7 @@ define(["thirdparty/jquery", "historicpoint/HistoricPointFactory", "timeline/Tim
 			this.m_oMainTimeLine = oMainTimeLine;
 		}
 		
-		this._configureViewPortTimes();
+		
 		this.m_oMotionController.render();
 		
 	}
@@ -147,26 +148,8 @@ define(["thirdparty/jquery", "historicpoint/HistoricPointFactory", "timeline/Tim
 		this.m_eViewContainer.css("left", nLeft);
 		
 		this._configureViewPortTimes();
-//		var nExtendTimeLine = this.m_nIncrementPixels * this._getTimePerPixel();
-//		this.m_oMainTimeLine.setEndDateMillis( this.m_oMainTimeLine.getEndDateMillis() + nExtendTimeLine);
-//		this.renderTimeLines();
-		
-		//nLeft = this.m_eViewContainer.position().left + this.m_nIncrementPixels;
-		//this.m_eViewContainer.css("left", nLeft);
 	}
 	
-	TimeLineController.prototype._configureViewPortTimes = function(){
-
-		var nLeft = -this.m_eViewContainer.position().left;
-
-		var nTimePerPixel = this._getTimePerPixel();
-		var nTimeMovedStart = nLeft * nTimePerPixel;
-		var nTimeMovedEnd = (nLeft+this.m_eViewContainerWrapper.width()) * nTimePerPixel;
-		this.m_nViewPortStartTime = this.m_oMainTimeLine.getStartDateMillis()+nTimeMovedStart;
-		this.m_nViewPortEndTime = this.m_oMainTimeLine.getStartDateMillis()+nTimeMovedEnd;
-		
-		console.log("VP, start time is " + new Date(this.m_nViewPortStartTime) + ", end time is " + new Date(this.m_nViewPortEndTime));
-	}
 	
 	TimeLineController.prototype._getTimePerPixel = function(){
 		
@@ -175,6 +158,50 @@ define(["thirdparty/jquery", "historicpoint/HistoricPointFactory", "timeline/Tim
 		var nTimeDifferance = nEndDate - nStartDate;
 		var nTimePerPixel = nTimeDifferance / this.m_eViewContainer.width();
 		return nTimePerPixel;
+	}
+	
+	TimeLineController.prototype._configureViewPortTimes = function(){
+		
+		setTimeout(function(){
+			
+			var nLeft = -this.m_eViewContainer.position().left;
+
+			var nTimePerPixel = this._getTimePerPixel();
+			var nTimeMovedStart = nLeft * nTimePerPixel;
+			var nTimeMovedEnd = (nLeft+this.m_eViewContainerWrapper.width()) * nTimePerPixel;
+			this.m_nViewPortStartTime = this.m_oMainTimeLine.getStartDateMillis()+nTimeMovedStart;
+			this.m_nViewPortEndTime = this.m_oMainTimeLine.getStartDateMillis()+nTimeMovedEnd;
+			
+			console.log("VP, start time is " + new Date(this.m_nViewPortStartTime) + ", end time is " + new Date(this.m_nViewPortEndTime));
+			
+			this._calibrate( nTimePerPixel );
+			
+		}.bind(this),550);
+	}
+	
+	TimeLineController.prototype._calibrate = function( nTimePerPixel ){
+		
+		this.m_eViewContainer.removeClass("timeline_animating");
+		
+		var nBufferTime = (this.m_eViewContainerWrapper.width()/2) * nTimePerPixel;
+		var nCalibratedStartTime = this.m_nViewPortStartTime - nBufferTime;
+		var nCalibratedEndTime = this.m_nViewPortEndTime + nBufferTime;
+		
+		if(this.m_nViewPortStartTime !== null && this.m_nViewPortEndTime !==null){
+			
+			//TODO: set it on all the timelines dodo
+			this.m_oMainTimeLine.setStartEndDateInMillis( nCalibratedStartTime, nCalibratedEndTime);
+		}
+		
+		this.renderTimeLines();
+		nLeft = - (this.m_eViewContainerWrapper.width()/2);
+
+		this.m_eViewContainer.css("left", nLeft);
+		
+		setTimeout(function(){
+			this.m_eViewContainer.addClass("timeline_animating");
+		}.bind(this),10)
+		
 	}
 	
 	return TimeLineController;

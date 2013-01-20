@@ -10,8 +10,6 @@ html,body {
 
 .timeline_container {
 	
-	-webkit-transition: all 200ms linear;
-	
 	width: 200%;
 	height: 100%;
 	
@@ -28,6 +26,10 @@ html,body {
 	position: absolute;
 	left:-50%;
 	top:0px;
+}
+
+.timeline_animating {
+	-webkit-transition: all 200ms linear;
 }
 
 .timeline {
