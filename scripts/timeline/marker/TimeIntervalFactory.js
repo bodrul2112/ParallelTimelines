@@ -1,6 +1,7 @@
 
 
 /// TIIIIIIIIIIIIIIIIIIIIIIIIMMMMMEEEE?!!?!?!?!? TODO: write this stuff properly later
+//TODO: This class is very VERY much in flux
 define( function(){
 	
 	var TimeIntervalFactory = function( ){
@@ -48,6 +49,37 @@ define( function(){
 			labelFormat: "",
 			times: pTimeArray
 		}
+		
+	}
+	
+	//TODO: what happens when pCurrrentTimes are empty, I need at least 3
+	TimeIntervalFactory.prototype.getCalibratedTimeIntervals = function( oTimeLine, pCurrentTimes ){
+		
+		var nStartTime = oTimeLine.getStartDateMillis();
+		var nEndTime = oTimeLine.getEndDateMillis();
+		
+
+		var nTimeInterval = pCurrentTimes[1]-pCurrentTimes[0];
+		var nFirstCurrentlyDisplayedMarkerTime = pCurrentTimes[0];
+		var nLastCurrentlyDisplayedMarkerTime = pCurrentTimes[pCurrentTimes.length-1];
+		
+		var pBeforeMarkers = [];
+		var pAfterMarkers = []
+		//time for new markers backwards
+		for(var i=nFirstCurrentlyDisplayedMarkerTime-nTimeInterval; i>nStartTime; i-=nTimeInterval){
+			pBeforeMarkers.push(i);
+		}
+		pBeforeMarkers = pBeforeMarkers.reverse();
+		
+		//time for new markers forwards
+		for(var i=nLastCurrentlyDisplayedMarkerTime+nTimeInterval; i<nEndTime; i+=nTimeInterval){
+			pAfterMarkers.push(i);
+		}
+		
+		return {
+			beforeMarkers: pBeforeMarkers,
+			afterMarkers: pAfterMarkers
+		};
 		
 	}
 	

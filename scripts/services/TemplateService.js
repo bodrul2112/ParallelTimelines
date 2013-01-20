@@ -11,7 +11,7 @@ define(["thirdparty/jquery"], function( jQuery ){
 
 	TEMPLATE_SERVICE.prototype.getTemplate = function( sTemplateClassName )
 	{
-		var eTemplate = $( sTemplateClassName ); 
+		var eTemplate = $( ".templates " + sTemplateClassName ); 
 		return eTemplate.clone();
 	}
 	

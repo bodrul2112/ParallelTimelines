@@ -19,9 +19,11 @@
 - [MC]	Infinite backwards and forward time navigation 
 
 == Features todo:
+- [V]	Make graphic artifacts smaller
 - [MVC]	Have multiple timelines displayed via the controller
 - [MC]	Re-use historic markers during infinite navigation ---> IN PROGRESS
 - [MC]	Re-use historic points during infinite navigation ---> IN PROGRESS
+- [MVC]	Edge labels should be on the top wrapper
 - [MC]	Lazy load left and right historic points offscreen
 - [MC]	Infinite zoom, inwards and outwards
 - [MC]	Regroup historic points based on zoom

@@ -4,12 +4,17 @@ define(["thirdparty/jQuery", "services/TemplateService"], function( jQuery, tpl 
 	var Marker = function( nTime, nViewIndex, eViewContainer ){
 		
 		this.m_nTime = nTime;
-		this.m_nViewIndex = nViewIndex;
+		this.m_nViewIndex = nViewIndex; 
 		this.m_eViewContainer = eViewContainer;
 
 		this.m_eElement = tpl.getTemplate( ".timeline_marker" );
 		this.m_sText;
 		this.m_bOnScreen = false;
+		this.m_bRendered = false;
+		
+		if(this.m_nTime == 959875200000){
+			debugger;
+		}
 		
 	}
 	
@@ -21,6 +26,10 @@ define(["thirdparty/jQuery", "services/TemplateService"], function( jQuery, tpl 
 		this.m_nViewIndex = nViewIndex;
 	} 
 	
+	Marker.prototype.getViewIndex = function( ) {
+		return this.m_nViewIndex;
+	} 
+	
 	Marker.prototype.setDateFormat = function( sDateFormat ) {
 		
 		// some default shizzle for now, just the year and month
@@ -29,22 +38,31 @@ define(["thirdparty/jQuery", "services/TemplateService"], function( jQuery, tpl 
 	}
 	
 	// I could reuse these markers, the code is kinda half there
+	// TODO: simplify this
 	Marker.prototype.render = function( oMainTimeLine ){
+		
+		if(this.m_nTime == 959875200000){
+			debugger;
+		}
+		
+		if(this.m_sText == "2000-6"){
+			debugger;
+		}
 		
 		var nLeft;
 		var nTop;
-		if( this.m_nTime >= oMainTimeLine.getStartDateMillis() && this.m_nTime <= oMainTimeLine.getEndDateMillis() ){
+//		if( this.m_nTime >= oMainTimeLine.getStartDateMillis() && this.m_nTime <= oMainTimeLine.getEndDateMillis() ){
 			
 			var nTimeSegment = this.m_nTime - oMainTimeLine.getStartDateMillis();
 			var nDifferance = oMainTimeLine.getEndDateMillis() - oMainTimeLine.getStartDateMillis();
 			nLeft = Math.floor( (nTimeSegment / nDifferance) * oMainTimeLine.getElement().width() );
-		}else {
-			
-			if(this.m_bOnScreen ){
-				this.m_eElement.remove();
-				return;
-			}
-		}
+//		}else {
+//			
+//			if(this.m_bOnScreen ){
+//				this.m_eElement.remove();
+//				return;
+//			}
+//		}
 		
 		if( nLeft != undefined ){
 			this.m_eElement.css("left", nLeft);
@@ -53,7 +71,7 @@ define(["thirdparty/jQuery", "services/TemplateService"], function( jQuery, tpl 
 				this.m_bOnScreen = true;
 			}
 		}
-
+	
 		var eTextLabel = this.m_eElement.find( ".timeline_marker_label" );
 		eTextLabel.text( this.m_sText );
 		if( this.m_nViewIndex%2 == 0 ){
@@ -62,6 +80,7 @@ define(["thirdparty/jQuery", "services/TemplateService"], function( jQuery, tpl 
 		}else{
 			this.m_eElement.css("top","30px");
 		}
+
 	} 
 	
 	Marker.prototype.destroy = function( ){
