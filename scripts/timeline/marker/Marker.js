@@ -12,10 +12,6 @@ define(["thirdparty/jQuery", "services/TemplateService"], function( jQuery, tpl 
 		this.m_bOnScreen = false;
 		this.m_bRendered = false;
 		
-		if(this.m_nTime == 959875200000){
-			debugger;
-		}
-		
 	}
 	
 	Marker.prototype.setTime = function( nTime ) {
@@ -40,14 +36,6 @@ define(["thirdparty/jQuery", "services/TemplateService"], function( jQuery, tpl 
 	// I could reuse these markers, the code is kinda half there
 	// TODO: simplify this
 	Marker.prototype.render = function( oMainTimeLine ){
-		
-		if(this.m_nTime == 959875200000){
-			debugger;
-		}
-		
-		if(this.m_sText == "2000-6"){
-			debugger;
-		}
 		
 		var nLeft;
 		var nTop;
