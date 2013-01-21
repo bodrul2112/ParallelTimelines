@@ -17,12 +17,18 @@
 - [M]	Integrate everything on a rendering stacks
 - [MVC]	Calculate markers
 - [MC]	Infinite backwards and forward time navigation 
+- [MC]	Re-use historic markers during infinite navigation
 
 == Features todo:
 - [V]	Make graphic artifacts smaller
-- [MVC]	Have multiple timelines displayed via the controller
-- [MC]	Re-use historic markers during infinite navigation ---> IN PROGRESS
-- [MC]	Re-use historic points during infinite navigation ---> IN PROGRESS
+- [MVC]	Have multiple timelines --> IN PROGRESS
+- [MC]	Layout timelines
+- [MC]	Drag timelines freely up and down
+- [MC]	Switch main timelines
+- [MC]	Combine and Seperate timelines
+- [MC]	Basic color schemes - blues?
+- [MVC]	Have multiple timelines displayed via the controller 
+- [MC]	Re-use historic points during infinite navigation 
 - [MVC]	Edge labels should be on the top wrapper
 - [MC]	Lazy load left and right historic points offscreen
 - [MC]	Infinite zoom, inwards and outwards
@@ -51,6 +57,7 @@
 - User interface for adding and customizing a timeline and historic points
 - Unevenly spaced timeline that condenses periods of no events, in some sensible manner
 - Performance audit for the code base
+- Search + Power Console
 
 
 == Nice to haves:

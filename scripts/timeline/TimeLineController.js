@@ -47,6 +47,7 @@ define(["thirdparty/jquery", "historicpoint/HistoricPointFactory", "timeline/Tim
 		// database timez ;'p
 	}
 	
+	//TODO: These are just mocks at the mo yo
 	TimeLineController.prototype.addTimeLineToView = function( sTimeLineName ){
 		
 		if( sTimeLineName == "world" ){
@@ -57,6 +58,14 @@ define(["thirdparty/jquery", "historicpoint/HistoricPointFactory", "timeline/Tim
 			oTimeLine.setAsMain(true);
 			this.addRandomHistoricPoints( oTimeLine );
 			this.m_pViewableTimeLines.push( oTimeLine );
+		}else{
+
+			var nStartDate = (new Date("1980-01-01 12:00:00")).getTime();
+			var nEndDate = (new Date("2012-01-01 12:00:00")).getTime();
+			var oTimeLine = new TimeLine( nStartDate, nEndDate );
+			oTimeLine.setY( 100 );
+			this.addRandomHistoricPoints( oTimeLine );
+			this.m_pViewableTimeLines.push( oTimeLine )
 		}
 	}
 	
@@ -94,26 +103,31 @@ define(["thirdparty/jquery", "historicpoint/HistoricPointFactory", "timeline/Tim
 	TimeLineController.prototype.renderTimeLines = function( ) {
 		
 		
-		
 		var oMainTimeLine;
 		for(var i=0; i< this.m_pViewableTimeLines.length; i++){
-			
-			oTimeLine = this.m_pViewableTimeLines[i];
-			
+			var oTimeLine = this.m_pViewableTimeLines[i];
+			this.m_eViewContainer.append( oTimeLine.getElement() );
 			if(oTimeLine.isMain()){
 				oMainTimeLine = oTimeLine;
 			}
-			
-			this.m_eViewContainer.append( oTimeLine.getElement() );
 		}
 		
 		if( oMainTimeLine ){
-			oTimeLine.setY( this.m_eViewContainer.height()/2 );
-			oTimeLine.render();
+			oMainTimeLine.setY( this.m_eViewContainer.height()/2 );
+			oMainTimeLine.render();
 			this.m_oMarkerController.setMainTimeLine( oMainTimeLine );
 			this.m_oMarkerController.renderMarkers();
 			this.m_oMainTimeLine = oMainTimeLine;
 		}
+		
+
+		for(var i=0; i< this.m_pViewableTimeLines.length; i++){
+			var oTimeLine = this.m_pViewableTimeLines[i];
+			if(!oTimeLine.isMain()){
+				oTimeLine.render();
+			}
+		}
+		
 		
 		
 		this.m_oMotionController.render();
@@ -190,7 +204,8 @@ define(["thirdparty/jquery", "historicpoint/HistoricPointFactory", "timeline/Tim
 		if(this.m_nViewPortStartTime !== null && this.m_nViewPortEndTime !==null){
 			
 			//TODO: set it on all the timelines dodo
-			this.m_oMainTimeLine.setStartEndDateInMillis( nCalibratedStartTime, nCalibratedEndTime);
+			//this.m_oMainTimeLine.setStartEndDateInMillis( nCalibratedStartTime, nCalibratedEndTime);
+			this.setAllTimeLinesToStartEndDates( nCalibratedStartTime, nCalibratedEndTime );
 		}
 		
 		this.renderTimeLines();

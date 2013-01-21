@@ -99,13 +99,13 @@ define(["thirdparty/jquery","services/TemplateService", "timeline/EdgeLabel"], f
 	// yup this is a giant block of codey coderson, no i'm not going to be a good programmer and break this down
 	TimeLine.prototype.render = function() {
 		
-		this.m_oLeftLabel.setTextAsDate( this.m_nStartDate );
-		this.m_oRightLabel.setTextAsDate( this.m_nEndDate );
-		this.m_oLeftLabel.render();
-		this.m_oRightLabel.render();
+//		this.m_oLeftLabel.setTextAsDate( this.m_nStartDate );
+//		this.m_oRightLabel.setTextAsDate( this.m_nEndDate );
+//		this.m_oLeftLabel.render();
+//		this.m_oRightLabel.render();
 		
 		// this shizzle is gonna go off the hizzle with dates before the epoch
-		
+		debugger;
 		var nTimeDifferance = this.m_nEndDate - this.m_nStartDate;  
 		
 		for(var i=0; i< this.m_pHistoricPoints.length; i++){
@@ -125,7 +125,7 @@ define(["thirdparty/jquery","services/TemplateService", "timeline/EdgeLabel"], f
 				eHistoricPoint.height( oHistoricPoint.getWidth() );
 				eHistoricPoint.css("left", nLeft+"px");
 				eHistoricPoint.css("top", nTop+"px");
-				
+				debugger;
 				this.m_eElement.append( eHistoricPoint );
 				
 				var nRedBorderWidth = 7;

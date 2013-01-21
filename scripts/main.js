@@ -16,6 +16,7 @@ require( ["plugins/domReady"], function(domReady){
 			var eTimeLineContainerWrapper = $('.timeline_wrapper');
 			oTimeLineController.setViewElement( eTimeLineContainer, eTimeLineContainerWrapper );
 			oTimeLineController.addTimeLineToView( "world" );
+			oTimeLineController.addTimeLineToView( "topline" );
 			oTimeLineController.renderTimeLines();
 			
 			
