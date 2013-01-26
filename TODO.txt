@@ -18,10 +18,11 @@
 - [MVC]	Calculate markers
 - [MC]	Infinite backwards and forward time navigation 
 - [MC]	Re-use historic markers during infinite navigation
+- [MVC]	Have multiple timelines 
 
 == Features todo:
-- [V]	Make graphic artifacts smaller
-- [MVC]	Have multiple timelines --> IN PROGRESS
+- [V]	Make graphic artifacts smaller --> in progress
+- [M]	Move over historic point rendering to the historic point class/controller 
 - [MC]	Layout timelines
 - [MC]	Drag timelines freely up and down
 - [MC]	Switch main timelines

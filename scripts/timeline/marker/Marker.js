@@ -63,10 +63,10 @@ define(["thirdparty/jQuery", "services/TemplateService"], function( jQuery, tpl 
 		var eTextLabel = this.m_eElement.find( ".timeline_marker_label" );
 		eTextLabel.text( this.m_sText );
 		if( this.m_nViewIndex%2 == 0 ){
-			this.m_eElement.css("top","-35px");
-			eTextLabel.css("top", (this.m_eElement.height()+10)+"px");
+			this.m_eElement.css("top","-21px");
+			eTextLabel.css("top", (this.m_eElement.height()+5)+"px");
 		}else{
-			this.m_eElement.css("top","30px");
+			this.m_eElement.css("top","21px");
 		}
 
 	} 

@@ -44,12 +44,12 @@
 	position: absolute;
 	height: 22px;
 	width: 100px;
-	left: -27px;
-	
+	left: -20px;
 	
 	font-family: time_burner; /* no .ttf */
 	color: #8F8F8F; 
-	top:-24px;
+	top:-18px;
+	font-size: 10px;
 }
 
 .even .timeline_marker_label {

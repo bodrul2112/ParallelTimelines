@@ -13,11 +13,12 @@ define( ["thirdparty/jquery","services/TemplateService", "historicpoint/Historic
 		var nSpace = ( nEndDate - nStartDate ) / nPoints;
 		
 		
-		
+		var maxSize = 70;
+		var minSize = 35;
 		for(var i=0; i< nPoints; i++){	
 			
-			var nK = Math.round( Math.random()*120 );
-			if( nK < 35 ){ nK=35; }
+			var nK = Math.round( Math.random()*maxSize );
+			if( nK < minSize ){ nK=minSize; }
 			var nWidth = nK;
 			var nHeight = nK;
 			

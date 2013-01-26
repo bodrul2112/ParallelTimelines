@@ -105,7 +105,7 @@ define(["thirdparty/jquery","services/TemplateService", "timeline/EdgeLabel"], f
 //		this.m_oRightLabel.render();
 		
 		// this shizzle is gonna go off the hizzle with dates before the epoch
-		debugger;
+		
 		var nTimeDifferance = this.m_nEndDate - this.m_nStartDate;  
 		
 		for(var i=0; i< this.m_pHistoricPoints.length; i++){
@@ -119,16 +119,16 @@ define(["thirdparty/jquery","services/TemplateService", "timeline/EdgeLabel"], f
 				var nLeft = Math.round( ( nTimeFragment / nTimeDifferance) * this.m_eElement.width() );
 				// half the size of the circle 
 				nLeft -=  (oHistoricPoint.getWidth()/2);
-				var nTop = -(oHistoricPoint.getHeight()/2)+5;
+				var nTop = -(oHistoricPoint.getHeight()/2)+3;
 				
 				eHistoricPoint.width( oHistoricPoint.getWidth() );
 				eHistoricPoint.height( oHistoricPoint.getWidth() );
 				eHistoricPoint.css("left", nLeft+"px");
 				eHistoricPoint.css("top", nTop+"px");
-				debugger;
+				
 				this.m_eElement.append( eHistoricPoint );
 				
-				var nRedBorderWidth = 7;
+				var nRedBorderWidth = 4;
 				var eWhiteCircle = eHistoricPoint.find('.outer_white_circle');
 				eWhiteCircle.width( oHistoricPoint.getWidth()-(nRedBorderWidth*2))
 				eWhiteCircle.height( oHistoricPoint.getHeight()-(nRedBorderWidth*2))
