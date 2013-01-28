@@ -1,0 +1,95 @@
+
+
+.historic_point {
+	
+	position: absolute;
+	border-radius: 50%;
+	
+	background: #cc0000; /* Old browsers */
+	background: -moz-linear-gradient(-45deg,  #cc0000 0%, #cc0000 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#cc0000), color-stop(100%,#cc0000)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(-45deg,  #cc0000 0%,#cc0000 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(-45deg,  #cc0000 0%,#cc0000 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(-45deg,  #cc0000 0%,#cc0000 100%); /* IE10+ */
+	background: linear-gradient(135deg,  #cc0000 0%,#cc0000 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', endColorstr='#cc0000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.outer_white_circle {
+	
+	position: absolute;
+	border-radius: 50%;
+	background-color: white;
+	
+}
+
+.timeline_marker {
+	
+	position: absolute;
+	height: 100%;
+	width: 1px;
+	border-left: 1px dashed #DBDBDB;
+	z-index: 1;
+	top:35px;
+	
+}
+
+@font-face {
+	font-family: time_burner;
+	src: url('timeburner_regular.ttf');
+}
+
+.timeline_marker_label {
+	
+	position: absolute;
+	height: 22px;
+	width: 100px;
+	left: -20px;
+	
+	font-family: time_burner; /* no .ttf */
+	color: #8F8F8F; 
+	top:-18px;
+	font-size: 10px;
+}
+
+.even .timeline_marker_label {
+	
+}
+
+.odd .timeline_marker_label {
+	
+}
+
+.navigationArrowHandle {
+	
+	position: absolute;
+	height: 20px;
+	width: 20px;
+	z-index: 3;
+	overflow: hidden;
+}
+
+.arrow-left {
+	width: 0; 
+	height: 0; 
+	border-top: 20px solid transparent;
+	border-bottom: 20px solid transparent; 
+	border-right:20px solid #CCC; 
+}
+
+.arrow-left:hover {
+	border-right:20px solid #999; 
+}
+
+.arrow-right {
+	width: 0; 
+	height: 0; 
+	border-top: 20px solid transparent;
+	border-bottom: 20px solid transparent;
+	border-left: 20px solid #CCC;
+}
+
+.arrow-right:hover {
+	border-left: 20px solid #999;
+}
+

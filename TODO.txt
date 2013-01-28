@@ -1,0 +1,75 @@
+
+
+== Todo legend
+- [M] code changes affect the model
+- [V] code changes affect the view, anything to do with designing or html structure
+- [C] code changes affect the controller
+- [build] - self explanatory
+- [Refactor] - refactoring required over all aspects 
+
+== Features done so far:
+- [VC]	Templating Utility
+- [MVC]	Create single timeline
+- [MC]	Accommodate multiple timelines (TimeLineController.js)
+- [M]	Build functionality to combine timelines
+- [MVC]	Add Events big and small to timeline (HistoricPoint.js)
+- [MVC]	Calculate and draw markers (MarkerController, Marker, TimeIntervalFactory)
+- [M]	Integrate everything on a rendering stacks
+- [MVC]	Calculate markers
+- [MC]	Infinite backwards and forward time navigation 
+- [MC]	Re-use historic markers during infinite navigation
+- [MVC]	Have multiple timelines 
+
+== Features todo:
+- [V]	Make graphic artifacts smaller --> in progress
+- [M]	Move over historic point rendering to the historic point class/controller 
+- [MC]	Layout timelines
+- [MC]	Drag timelines freely up and down
+- [MC]	Switch main timelines
+- [MC]	Combine and Seperate timelines
+- [MC]	Basic color schemes - blues?
+- [MVC]	Have multiple timelines displayed via the controller 
+- [MC]	Re-use historic points during infinite navigation 
+- [MVC]	Edge labels should be on the top wrapper
+- [MC]	Lazy load left and right historic points offscreen
+- [MC]	Infinite zoom, inwards and outwards
+- [MC]	Regroup historic points based on zoom
+- [MC]	Zoom into merged historic point and unmerge the point
+- [MVC] Bezier momentum sliding 
+- [MVC] Reposition TimeLines, set Another timeline as main
+
+- [MVC]	Display information on historic points
+- [MC]	Store historic points into database (nosql?)
+- [MC]	Store historic points in browser cache
+- [MVC]	User profiles
+- [MC]	Generate unique ID for a timeline
+
+- [MVC]	Transfer Timelines between one user and another
+- [MVC]	Store information about where to find timeline
+- [MC]	In browser caching of transfered timelines
+- [MC]	Save transfered timelines. 
+- [MC]	Dynamically update a transferred timeline
+
+- [MVC]	Auto adjacent color scheme timelines
+
+== Epic Features todo:
+- [Build][Refactor] Convert project to be dynamically served
+- Make the code android and ios friendly
+- User interface for adding and customizing a timeline and historic points
+- Unevenly spaced timeline that condenses periods of no events, in some sensible manner
+- Performance audit for the code base
+- Search + Power Console
+
+
+== Nice to haves:
+- Image selection for a historic points
+- Video selection for a historic points - persist the name of the youtube video if it gets lost
+- Nice animations for various parts of the timeline
+
+== Epic nice to haves:
+- Render giant image from the timeline
+- Bias meta tag information
+- Bias detection / Sentiment Analyser
+- Connect timelines based on keywords
+- Keyword search built multi timeline
+- Tests...lol 
