@@ -1,5 +1,5 @@
 
-define(["thirdparty/jquery", "historicpoint/HistoricPointFactory", "timeline/TimeLine", "timeline/Marker/MarkerController", "navigation/MotionController"], function( jQuery, HistoricPointFactory, TimeLine, MarkerController, MotionController ){
+define(["thirdparty/jquery", "historicpoint/HistoricPointFactory", "timeline/TimeLine", "timeline/marker/MarkerController", "navigation/MotionController"], function( jQuery, HistoricPointFactory, TimeLine, MarkerController, MotionController ){
 	
 	var TimeLineController = function(){
 
