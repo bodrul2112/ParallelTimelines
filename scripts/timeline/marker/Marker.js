@@ -1,5 +1,5 @@
 
-define(["thirdparty/jQuery", "services/TemplateService"], function( jQuery, tpl ){
+define(["thirdparty/jquery", "services/TemplateService"], function( jQuery, tpl ){
 	
 	var Marker = function( nTime, nViewIndex, eViewContainer ){
 		

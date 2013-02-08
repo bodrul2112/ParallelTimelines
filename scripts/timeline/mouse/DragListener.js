@@ -1,6 +1,6 @@
 
 // NO. This would be too slow
-define(["thirdparty/jQuery"], function( jQuery, tpl ){
+define(["thirdparty/jquery"], function( jQuery, tpl ){
 
 	var DragListener = function( eTimeline ){
 		

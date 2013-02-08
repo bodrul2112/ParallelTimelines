@@ -1,5 +1,5 @@
 
-define(["thirdparty/jQuery", "services/TemplateService", "timeline/marker/Marker","timeline/marker/TimeIntervalFactory"], function( jQuery, tpl, Marker, TimeIntervalFactory ){
+define(["thirdparty/jquery", "services/TemplateService", "timeline/marker/Marker","timeline/marker/TimeIntervalFactory"], function( jQuery, tpl, Marker, TimeIntervalFactory ){
 	
 	var MarkerController = function( eViewContainer ){
 		
